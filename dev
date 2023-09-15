@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+
+# ./dev -h
+
+import argparse
+from http.client import HTTPException
+import os
+from subprocess import run
+import sys
+from threading import Thread
+import time
+from urllib.error import URLError
+from urllib.request import urlopen
+import webbrowser
+
+parser = argparse.ArgumentParser(prog='./dev')
+subparsers = parser.add_subparsers(metavar='<command>', title='commands')
+
+LOCAL_SITE = 'http://localhost:1313'
+
+def command(help):
+    def decorator(func):
+        parser = subparsers.add_parser(
+            func.__name__.replace('_', '-'), help=help
+        )
+        parser.set_defaults(func=func)
+        return func
+    return decorator
+
+def run_command(command, bind_port=False):
+    return run(
+        [
+            'docker', 'run', '--init', '--rm', '-v',
+            f'{os.getcwd()}:/src:cached'
+        ] +
+        (['-p', '1313:1313'] if bind_port else []) +
+        (['-it'] if sys.stdout.isatty() else []) + ['dannyguo-dev'] + command
+    ).returncode
+
+def open_in_browser():
+    while True:
+        try:
+            urlopen(LOCAL_SITE)
+            break
+        except (ConnectionError, URLError, HTTPException):
+            time.sleep(1)
+    webbrowser.open(LOCAL_SITE)
+
+@command('Sync the search index with Algolia')
+def algolia(args, remaining):
+    if os.environ.get('CI') == 'true':
+        with open('template.env') as template, open('.env', 'w') as env:
+            for line in template:
+                if '=' in line and line[0] != '#':
+                    split = line.strip().split('=')
+                    key = split[0]
+                    value = os.environ.get(key, split[1])
+                    env.write(f'{key}={value}\n')
+    elif not os.path.isfile('.env'):
+        print('Aborting: create a .env file based off of template.env')
+        return 1
+
+    with open('template.env') as template:
+        required_variables = {
+            line.split('=')[0] for line in template
+            if '=' in line and line[0] != '#'
+        }
+
+    with open('.env') as env:
+        set_variables = {
+            line.split('=')[0] for line in env
+            if '=' in line and line[0] != '#'
+        }
+
+    missing_variables = required_variables - set_variables
+    if missing_variables:
+        print('Your .env is missing these variables:')
+        print(', '.join(missing_variables))
+        return 1
+
+    # Generate the search index by generating the site
+    rc = hugo(None, None)
+    if rc:
+        return rc
+
+    return run_command(['yarn', 'run', 'update-search-index'])
+
+@command('Build a Docker image for development')
+def build_docker(args, remaining):
+    return run(['docker', 'build', '-t', 'dannyguo-dev', '.']).returncode
+
+@command('Run a Hugo command')
+def hugo(args, remaining):
+    return run_command(['hugo'] + (remaining or []))
+
+@command('Run linters')
+def lint(args, remaining):
+    rc = hugo(None, None)
+    if rc:
+        return rc
+
+    return run_command(['yarn', 'run', 'lint'])
+
+def new(args, remaining):
+    return run_command(['hugo', 'new', f'blog/{args.title}.md'])
+new_parser = subparsers.add_parser('new', help='Generate a new blog post')
+new_parser.add_argument('title', help="title of the post in kebab-case")
+new_parser.set_defaults(func=new)
+
+@command('Serve the prod site locally')
+def prod(args, remaining):
+    Thread(target=open_in_browser).start()
+    run_command(['hugo', 'server', '--bind', '0.0.0.0'], True)
+
+@command('View the website in your browser')
+def view(args, remaining):
+    webbrowser.open(LOCAL_SITE)
+
+@command('Open a shell')
+def sh(args, remaining):
+    return run_command(['sh'])
+
+@command('Start development')
+def start(args, remaining):
+    Thread(target=open_in_browser).start()
+    run_command(['hugo', 'server', '--bind', '0.0.0.0', '--buildDrafts'], True)
+
+@command('Run a Yarn command')
+def yarn(args, remaining):
+    return run_command(['yarn'] + (remaining or []))
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        args, remaining = parser.parse_known_args()
+        returncode = args.func(args, remaining)
+        sys.exit(returncode)
+    else:
+        parser.print_help()

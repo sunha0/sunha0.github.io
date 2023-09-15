@@ -1,0 +1,21 @@
+.DS_Store
+*.log
+*.swo
+*.swp
+dist/
+node_modules/
+
+# Yarn
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
