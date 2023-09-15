@@ -1,8 +1,8 @@
 {
-    "name": "dannyguo.com",
+    "name": "sunha0.github.io",
     "version": "1.0.0",
-    "repository": "https://github.com/dguo/dannyguo.com",
-    "author": "Danny Guo",
+    "repository": "https://github.com/sunha0/sunha0.github.io",
+    "author": "sun ha0",
     "private": true,
     "scripts": {
         "dev": "astro dev",
