@@ -1,108 +1,120 @@
-# Danny Guo's personal website
+> March, 2016: If you're on an old version of Jekyll Now and run into a) build warnings or b) syntax highlighting issues caused by [Jekyll 3 and GitHub Pages updates](https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0), just :sparkles:[update your _config.yml](https://github.com/barryclark/jekyll-now/pull/445/files):sparkles: and you'll be set!
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2288054d-de7c-458b-bbf4-21a1c3fcfeee/deploy-status)](https://app.netlify.com/sites/dannyguo/deploys)
-[![CI status](https://github.com/dguo/dannyguo.com/workflows/CI/badge.svg)](https://github.com/dguo/dannyguo.com/actions?query=branch%3Amaster)
+# Jekyll Now
 
-Hello! My website is available at https://dannyguo.com.
+**Jekyll** is a static site generator that's perfect for GitHub hosted blogs ([Jekyll Repository](https://github.com/jekyll/jekyll))
 
-## Tech Stack
+**Jekyll Now** makes it easier to create your Jekyll blog, by eliminating a lot of the up front setup.
 
-* [Algolia](https://algolia.com/) for search functionality
-* [Disqus](https://disqus.com/) for comments in posts
-* [GitHub Actions](https://github.com/dguo/dannyguo.com/actions) for continuous
-  integration
-* [Google Analytics](https://www.google.com/analytics) for analytics
-* [Google Fonts](https://fonts.google.com/) for the [Open Sans](https://fonts.google.com/specimen/Open+Sans) font
-* [Astro](https://astro.build/) for generating the site
-* [Imgur](https://imgur.com/) for image hosting
-    * This allows me to avoid committing images to Git
-* [Netlify](https://netlify.com/) for hosting
-* [Repl.it](https://repl.it/) for interactive code snippets
+- You don't need to touch the command line
+- You don't need to install/configure ruby, rvm/rbenv, ruby gems :relaxed:
+- You don't need to install runtime dependencies like markdown processors, Pygments, etc
+- If you're on Windows, this will make setting up Jekyll a lot easier
+- It's easy to try out, you can just delete your forked repository if you don't like it
 
-## Features
+In a few minutes you'll be set up with a minimal, responsive blog like the one below giving you more time to spend on writing epic blog posts!
 
-* [animated link underlines](https://github.com/dguo/dannyguo.com/commit/14e51391329163fa414ac55d77fdf6da521ab644)
-* [comments](https://github.com/dguo/dannyguo.com/commit/8bbd1e12cf145844e384b1858f169d96fd70b45c)
-* [copy to clipboard buttons for code blocks](https://github.com/dguo/dannyguo.com/commit/6953658a361112c3d3f7c348a537a200d24c8c63)
-* [custom text selection colors](https://github.com/dguo/dannyguo.com/commit/b6426c17c4fc7c1d53131c626f93481762919fc8)
-* ["edit on GitHub" links](https://github.com/dguo/dannyguo.com/commit/a28a14aef5846cefe714b24a2cd67081398c71b7)
-* [estimated reading times and word counts](https://github.com/dguo/dannyguo.com/commit/8471241935cc21e84b8e51f51d20b59226698551)
-* [pagination links to the previous and next posts](https://github.com/dguo/dannyguo.com/commit/5e8f017598f5afe430398c45c3808f4968c8eee4)
-* [RSS feed for blog posts](https://github.com/dguo/dannyguo.com/commit/2001465e76c58e409c60ff688dd779298ab5b1f4)
-* [static anchor links](https://github.com/dguo/dannyguo.com/commit/d8f81fa4573ccdf90030cb8f1252ec27f330493f)
-* [static copyright year](https://github.com/dguo/dannyguo.com/commit/a8a3e1acac919f759253f07ad8a466be8ba4fcfb)
-* [static syntax highlighting](https://github.com/dguo/dannyguo.com/commit/3f02ffcd82883de75ac68151b1b518b045fb390b)
-* ["Updated on" dates](https://github.com/dguo/dannyguo.com/commit/86db8a3831508876bd8836573af3e752300e07c1) for blog posts when applicable
-* unlisted posts that are only publicly available through a direct link
+![Jekyll Now Theme Screenshot](/images/jekyll-now-theme-screenshot.jpg "Jekyll Now Theme Screenshot")
 
-## Content
+## Quick Start
 
-* [blog](https://www.dannyguo.com/blog/)
-* [books](https://www.dannyguo.com/books/)
-* [concerts that I've attended](https://www.dannyguo.com/about/#music)
-* [food choices](https://www.dannyguo.com/food/)
-* [GPG key](https://www.dannyguo.com/keys/)
-* [public profiles](https://www.dannyguo.com/about/#public-profiles)
-* [problems that I've noticed](https://www.dannyguo.com/problems/)
-* [projects](https://www.dannyguo.com/projects)
-* [mini blog of issues I've run into while programming](https://www.dannyguo.com/friction/)
-* [referral links](https://wwww.dannyguo.com/referrals/)
+### Step 1) Fork Jekyll Now to your User Repository
 
-## Checklist for Publishing an Unlisted Post
+Fork this repo, then rename the repository to yourgithubusername.github.io.
 
-Follow this checklist to make a post publicly available, but only through a
-direct link. Nothing on the site should link to it. This concept is the same as
-an [unlisted YouTube video](https://support.google.com/youtube/answer/157177) or
-[unlisted Medium
-post](https://help.medium.com/hc/en-us/articles/215552778-Unlisted-publishing).
+Your Jekyll blog will often be viewable immediately at <https://yourgithubusername.github.io> (if it's not, you can often force it to build by completing step 2)
 
-1. Remove the `draft` flag from the front matter
-2. Add an `unlisted` flag with a value of `true`
-3. [Filter](https://docs.astro.build/en/guides/integrations-guide/sitemap/#filter) the URL from the sitemap
-4. Leave the `date`, `categories`, and `tags` fields empty
-5. Commit, and push to deploy
+![Step 1](/images/step1.gif "Step 1")
 
-## Checklist for Publishing a Final Post
+### Step 2) Customize and view your site
 
-1. Upload any images to the dedicated [Imgur album](https://imgur.com/a/mA7JRWp)
-2. Update the front matter
-    * Remove the `draft` or `unlisted` flag
-    * Set the `date`, `categories`, and `tags` fields
-3. Back up images in Google Drive
-4. [Import](https://medium.com/p/import) the post into [Medium](https://medium.com/@dannyguo)
-    * Convert code blocks into [GitHub gists](https://gist.github.com/) and embed them
-        * Use `?file=foo.js` to [reference a specific file in a
-            gist](https://stackoverflow.com/a/64728065/1481479)
-    * Embed any [Repl.it](https://repl.it/repls) snippets
-    * Set the [content licensing](https://help.medium.com/hc/en-us/articles/214741758-Content-licenses)
-      to "Attribution, non-commercial, share alike"
-5. Import the post into [dev.to](https://dev.to/)
-    * To get around dev.to's [issue](https://github.com/thepracticaldev/dev.to/issues/575) with line break handling in Markdown, use `:%s/\(\S\)\n\(\S\)/\1 \2/ ` in Vim to join lines within paragraphs (afterwards, fix lists, code blocks, etc. as appropriate)
-    * Add `canonical_url` to the front matter
-    * Add any GIFs manually
-7. Import the post into [Hashnode](https://hashnode.com/)
-    * Set the canonical URL
-8. Publicize the post, as appropriate, and update the post with links
-    * [Hacker News](https://news.ycombinator.com/)
-    * [Lobsters](https://lobste.rs/)
-    * [Reddit](https://www.reddit.com/)
-    * [Twitter](https://twitter.com/)
+Enter your site name, description, avatar and many other options by editing the _config.yml file. You can easily turn on Google Analytics tracking, Disqus commenting and social icons here too.
 
-## Checklist for Updating a Post
+Making a change to _config.yml (or any file in your repository) will force GitHub Pages to rebuild your site with jekyll. Your rebuilt site will be viewable a few seconds later at <https://yourgithubusername.github.io> - if not, give it ten minutes as GitHub suggests and it'll appear soon
 
-Only do this for substantial changes, not small ones like fixing typos or links.
+> There are 3 different ways that you can make changes to your blog's files:
 
-1. Add the `lastmod` variable to the post's [front
-   matter](https://docs.astro.build/en/guides/markdown-content/#frontmatter-layout)
-2. Update the post content
-3. Publish it
-4. If applicable, update the Medium post and/or the dev.to post
-    * Make sure to check embedded content, like code examples
+> 1. Edit files within your new username.github.io repository in the browser at GitHub.com (shown below).
+> 2. Use a third party GitHub content editor, like [Prose by Development Seed](http://prose.io). It's optimized for use with Jekyll making markdown editing, writing drafts, and uploading images really easy.
+> 3. Clone down your repository and make updates locally, then push them to your GitHub repository.
 
-## License
+![_config.yml](/images/config.png "_config.yml")
 
-The content of this project (in the `content` directory) is licensed under the
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-license](http://creativecommons.org/licenses/by-nc-sa/4.0/), and the underlying
-source code used to format and display this content is licensed under the [MIT
-license](https://github.com/dguo/dannyguo.com/blob/master/LICENSE.txt).
+### Step 3) Publish your first blog post
+
+Edit `/_posts/2014-3-3-Hello-World.md` to publish your first blog post. This [Markdown Cheatsheet](http://www.jekyllnow.com/Markdown-Style-Guide/) might come in handy.
+
+![First Post](/images/first-post.png "First Post")
+
+> You can add additional posts in the browser on GitHub.com too! Just hit the + icon in `/_posts/` to create new content. Just make sure to include the [front-matter](http://jekyllrb.com/docs/frontmatter/) block at the top of each new blog post and make sure the post's filename is in this format: year-month-day-title.md
+
+## Local Development
+
+1. Install Jekyll and plug-ins in one fell swoop. `gem install github-pages` This mirrors the plug-ins used by GitHub Pages on your local machine including Jekyll, Sass, etc.
+2. Clone down your fork `git clone https://github.com/yourusername/yourusername.github.io.git`
+3. Serve the site and watch for markup/sass changes `jekyll serve`
+4. View your website at http://127.0.0.1:4000/
+5. Commit any changes and push everything to the master branch of your GitHub user repository. GitHub Pages will then rebuild and serve your website.
+
+## Moar!
+
+I've created a more detailed walkthrough, [**Build A Blog With Jekyll And GitHub Pages**](http://www.smashingmagazine.com/2014/08/01/build-blog-jekyll-github-pages/) over at the Smashing Magazine website. Check it out if you'd like a more detailed walkthrough and some background on Jekyll. :metal:
+
+It covers:
+
+- A more detailed walkthrough of setting up your Jekyll blog
+- Common issues that you might encounter while using Jekyll
+- Importing from Wordpress, using your own domain name, and blogging in your favorite editor
+- Theming in Jekyll, with Liquid templating examples
+- A quick look at Jekyll 2.0’s new features, including Sass/Coffeescript support and Collections
+
+## Jekyll Now Features
+
+✓ Command-line free _fork-first workflow_, using GitHub.com to create, customize and post to your blog  
+✓ Fully responsive and mobile optimized base theme (**[Theme Demo](http://jekyllnow.com)**)  
+✓ Sass/Coffeescript support using Jekyll 2.0  
+✓ Free hosting on your GitHub Pages user site  
+✓ Markdown blogging  
+✓ Syntax highlighting  
+✓ Disqus commenting  
+✓ Google Analytics integration  
+✓ SVG social icons for your footer  
+✓ 3 http requests, including your avatar  
+
+✘ No installing dependencies
+✘ No need to set up local development  
+✘ No configuring plugins  
+✘ No need to spend time on theming  
+✘ More time to code other things ... wait ✓!  
+
+## Questions?
+
+[Open an Issue](https://github.com/barryclark/jekyll-now/issues/new) and let's chat!
+
+## Other forkable themes
+
+You can use the [Quick Start](https://github.com/barryclark/jekyll-now#quick-start) workflow with other themes that are set up to be forked too! Here are some of my favorites:
+
+- [Hyde](https://github.com/poole/hyde) by MDO
+- [Lanyon](https://github.com/poole/lanyon) by MDO
+- [mojombo.github.io](https://github.com/mojombo/mojombo.github.io) by Tom Preston-Werner
+- [Left](https://github.com/holman/left) by Zach Holman
+- [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) by Michael Rose
+- [Skinny Bones](https://github.com/mmistakes/skinny-bones-jekyll) by Michael Rose
+
+## Credits
+
+- [Jekyll](https://github.com/jekyll/jekyll) - Thanks to its creators, contributors and maintainers.
+- [SVG icons](https://github.com/neilorangepeel/Free-Social-Icons) - Thanks, Neil Orange Peel. They're beautiful.
+- [Solarized Light Pygments](https://gist.github.com/edwardhotchkiss/2005058) - Thanks, Edward.
+- [Joel Glovier](http://joelglovier.com/writing/) - Great Jekyll articles. I used Joel's feed.xml in this repository.
+- [David Furnes](https://github.com/dfurnes), [Jon Uy](https://github.com/jonuy), [Luke Patton](https://github.com/lkpttn) - Thanks for the design/code reviews.
+- [Bart Kiers](https://github.com/bkiers), [Florian Simon](https://github.com/vermluh), [Henry Stanley](https://github.com/henryaj), [Hun Jae Lee](https://github.com/hunjaelee), [Javier Cejudo](https://github.com/javiercejudo), [Peter Etelej](https://github.com/etelej), [Ben Abbott](https://github.com/jaminscript), [Ray Nicholus](https://github.com/rnicholus), [Erin Grand](https://github.com/eringrand), [Léo Colombaro](https://github.com/LeoColomb), [Dean Attali](https://github.com/daattali), [Clayton Errington](https://github.com/cjerrington), [Colton Fitzgerald](https://github.com/coltonfitzgerald), [Trace Mayer](https://github.com/sunnankar) - Thanks for your [fantastic contributions](https://github.com/barryclark/jekyll-now/commits/master) to the project!
+
+## Contributing
+
+Issues and Pull Requests are greatly appreciated. If you've never contributed to an open source project before I'm more than happy to walk you through how to create a pull request.
+
+You can start by [opening an issue](https://github.com/barryclark/jekyll-now/issues/new) describing the problem that you're looking to resolve and we'll go from there.
+
+I want to keep Jekyll Now as minimal as possible. Every line of code should be one that's useful to 90% of the people using it. Please bear that in mind when submitting feature requests. If it's not something that most people will use, it probably won't get merged. :guardsman:
