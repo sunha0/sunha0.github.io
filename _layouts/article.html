@@ -1,0 +1,38 @@
+---
+layout: page
+type: article
+---
+
+{%- include snippets/assign.html
+  target = site.data.variables.default.page.sharing
+  source0=layout.sharing source1=page.sharing -%}
+{%- assign _sharing = __return -%}
+
+<div class="layout--article">
+  {%- include article/top/custom.html -%}
+
+  <div class="article__content" itemprop="articleBody">
+    {{ content }}
+    {% include advertisements.html %}
+  </div>
+
+  {%- if _sharing -%}
+    <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
+  {%- endif -%}
+
+  <div class="reward">
+    <div class="reward-button"><span class="reward-code">
+      <span class="alipay-code"> <img class="alipay-img wdp-appear" src="https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/venmo.jpeg"> </span>
+      <span class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/paypal.jpeg"> </span> </span>
+    </div>
+  </div>
+  <div class="d-print-none">
+    {%- include article-footer.html -%}
+    {%- include article-section-navigator.html -%}
+  </div>
+
+</div>
+
+<script>
+  {%- include scripts/article.js -%}
+</script>
