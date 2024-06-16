@@ -32,6 +32,14 @@ comment: false
 
 I'm a IT worker and also an English learner.
 
+<iframe
+  id="inlineFrameExample"
+  title="Inline Frame Example"
+  width="300"
+  height="200"
+  src="https://sunha0.github.io/running_page/">
+</iframe>
+
 
 
 
