@@ -19,9 +19,6 @@ key: page-about
 comment: false
 ---
 
-<a href="https://github.com/sunha0/"><img src="https://github.com/sunha0/sunha0.github.io/blob/master/assets/images/avatar/avatar.jpg?raw=true" class="avatar" vspace="50" /></a>
-<br>
-
 <div align="center">
 <a href="https://github.com/sunha0/"><img src="https://ghchart.rshah.org/sunha0" alt="Sunha0's Blue Github Chart" /></a>
 </div><br>
