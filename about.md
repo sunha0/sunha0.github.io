@@ -30,7 +30,7 @@ comment: false
 
 ## About Me
 
-I'm a IT worker and also a english learner.
+I'm a IT worker and also an English learner.
 
 
 
