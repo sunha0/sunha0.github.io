@@ -35,7 +35,7 @@ I'm a IT worker and also an English learner and below is my running page.
 <iframe
   id="inlineFrameExample"
   title="Inline Frame Example"
-  width="800"
+  width="1000"
   height="800"
   src="https://sunha0.github.io/running_page/">
 </iframe>
